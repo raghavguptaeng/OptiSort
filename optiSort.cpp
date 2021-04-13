@@ -2,13 +2,15 @@
 #include <iostream>
 #include <pthread.h>
 #include <time.h>  
+#define MAX 20
+  
+// number of threads
 #define THREAD_MAX 4
-
+  
 using namespace std;
-
+  
 // array of size MAX
-int MAX ;
-int a[100];
+int a[MAX];
 int part = 0;
 
 // merge function for merging two parts
@@ -89,12 +91,10 @@ void* merge_sort(void* arg)
 }
 
 // Driver Code
-int startMerge(int n)
+int startMerge()
 {
-    ::MAX = n;
-	// generating random values in array
-	for (int i = 0; i < MAX; i++)
-		a[i] = MAX-i;
+    for (int i = 0; i < MAX; i++)
+        a[i] = rand() % 100;
 
 	// t1 and t2 for calculating time for
 	// merge sort
@@ -280,7 +280,11 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, pi + 1, high);
     }
 }
-void Optimize(int arr[],int n){
+void Optimize(int arr[],int n ,bool seeMulti = false){
+    if(seeMulti){
+        startMerge();
+        return;
+    }
     int sortfinderCount = 0;
     for(int i=0 ; i<n-1 ; ++i){
         if(arr[i]<arr[i+1]){
