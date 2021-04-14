@@ -2,7 +2,7 @@
 #include <iostream>
 #include <pthread.h>
 #include <time.h>  
-#define MAX 20
+#define MAX 200
   
 // number of threads
 #define THREAD_MAX 4
@@ -93,8 +93,7 @@ void* merge_sort(void* arg)
 // Driver Code
 int startMerge()
 {
-    for (int i = 0; i < MAX; i++)
-        a[i] = rand() % 100;
+    
 
 	// t1 and t2 for calculating time for
 	// merge sort
@@ -280,7 +279,9 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, pi + 1, high);
     }
 }
-void Optimize(int arr[],int n ,bool seeMulti = false){
+void Optimize(bool seeMulti = false){
+    int arr[10];
+    int n=9;
     if(seeMulti){
         startMerge();
         return;
@@ -296,27 +297,24 @@ void Optimize(int arr[],int n ,bool seeMulti = false){
     }
     if(n-sortfinderCount<5 && n<10){
         insertionSort(arr,n);
+        cout<<"Insertion Sort ";
     }
     else if(n-sortfinderCount<5 && n>=10){
         bubbleSort(arr,n);
+        cout<<"Bubble Sort ";
     }
     else if(n<10){
         selectionSort(arr,n);
+        cout<<"Selection Sort ";
     }
     else{
         mergeSortSingle(arr,0,n);
+        cout<<"Merge Sort ";
     }
 }
 // Driver Ccodes to come here;
 int main() {
-	int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0 ; i<n ; ++i){
-        cin>>arr[i];
-    }
-    Optimize(arr,n);
-    for(int i=0 ; i<n ; ++i){
-        cout<<arr[i]<<" ";
-    }
+	for (int i = 0; i < MAX; i++)
+        a[i] = rand()%150;
+    Optimize(true);
 }
