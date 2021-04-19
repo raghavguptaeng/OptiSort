@@ -2,10 +2,10 @@
 #include <iostream>
 #include <pthread.h>
 #include <time.h>  
-#define MAX 200
+#define MAX 2000
   
 // number of threads
-#define THREAD_MAX 4
+#define THREAD_MAX 6
   
 using namespace std;
   
@@ -124,8 +124,7 @@ int startMerge()
 		cout << a[i] << " ";
 
 	// time taken by merge sort in seconds
-	cout << "Time taken: " << (t2 - t1) /
-			(double)CLOCKS_PER_SEC << endl;
+	cout << "Time taken: " << (t2 - t1)/(double)CLOCKS_PER_SEC<< endl;
 
 	return 0;
 }
@@ -280,11 +279,14 @@ void quickSort(int arr[], int low, int high)
     }
 }
 void Optimize(bool seeMulti = false){
-    int arr[10];
-    int n=9;
-    if(seeMulti){
+    int arr[MAX];
+    for(int i=0 ; i<MAX ; ++i){
+        arr[i] = a[i];
+    }
+    int n=MAX;
+    if(true){
         startMerge();
-        return;
+        //return;
     }
     int sortfinderCount = 0;
     for(int i=0 ; i<n-1 ; ++i){
@@ -295,26 +297,39 @@ void Optimize(bool seeMulti = false){
             break;
         }
     }
+    clock_t t1, t2 ,t3,t4,t5,t6,t7,t8;
     if(n-sortfinderCount<5 && n<10){
+        t1 = clock();
         insertionSort(arr,n);
         cout<<"Insertion Sort ";
+        t2 = clock();
+        cout<<"Time taken : "<<(t1-t2);
     }
     else if(n-sortfinderCount<5 && n>=10){
+        t3 = clock();
         bubbleSort(arr,n);
         cout<<"Bubble Sort ";
+        t4 = clock();
+        cout<<"Time taken : "<<(t4-t3);
     }
     else if(n<10){
+        t5 = clock();
         selectionSort(arr,n);
         cout<<"Selection Sort ";
+        t6 = clock();
+        cout<<"Time taken : "<<(t6-t5);
     }
     else{
+        t7 = clock();
         mergeSortSingle(arr,0,n);
         cout<<"Merge Sort ";
+        t8 = clock();
+        cout<<"Time taken : "<<(t8-t7);
     }
 }
-// Driver Ccodes to come here;
+// Driver Ccodes to come here; 0.000622
 int main() {
 	for (int i = 0; i < MAX; i++)
-        a[i] = rand()%150;
-    Optimize(true);
+        a[i] = rand()%1200;
+    Optimize();
 }
