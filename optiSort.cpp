@@ -124,7 +124,7 @@ int startMerge()
 		cout << a[i] << " ";
 
 	// time taken by merge sort in seconds
-	cout << "Time taken: " << (t2 - t1)/(double)CLOCKS_PER_SEC<< endl;
+	cout << "Time taken: " << (t2 - t1)<< endl;
 
 	return 0;
 }
@@ -279,14 +279,17 @@ void quickSort(int arr[], int low, int high)
     }
 }
 void Optimize(bool seeMulti = false){
-    int arr[MAX];
+    int arr[MAX],a1[MAX],a2[MAX],a3[MAX],a4[MAX];
     for(int i=0 ; i<MAX ; ++i){
         arr[i] = a[i];
+        a1[i] = a[i];
+        a2[i] = a[i];
+        a3[i] = a[i];
+        a4[i] = a[i];
     }
     int n=MAX;
     if(true){
         startMerge();
-        //return;
     }
     int sortfinderCount = 0;
     for(int i=0 ; i<n-1 ; ++i){
@@ -297,35 +300,52 @@ void Optimize(bool seeMulti = false){
             break;
         }
     }
-    clock_t t1, t2 ,t3,t4,t5,t6,t7,t8;
-    if(n-sortfinderCount<5 && n<10){
+    clock_t t1, t2 ,t3,t4,t5,t6,t7,t8,t9,t10;
+    cout<<endl;
         t1 = clock();
-        insertionSort(arr,n);
-        cout<<"Insertion Sort ";
+        insertionSort(a1,n);
+        cout<<"Insertion Sort "<<endl;
         t2 = clock();
-        cout<<"Time taken : "<<(t1-t2);
-    }
-    else if(n-sortfinderCount<5 && n>=10){
+        cout<<"Time taken : "<<(t2-t1);
+    cout<<endl;
         t3 = clock();
-        bubbleSort(arr,n);
-        cout<<"Bubble Sort ";
+        bubbleSort(a2,n);
+        cout<<"Bubble Sort "<<endl;
         t4 = clock();
         cout<<"Time taken : "<<(t4-t3);
-    }
-    else if(n<10){
+    cout<<endl;
         t5 = clock();
-        selectionSort(arr,n);
-        cout<<"Selection Sort ";
+        selectionSort(a3,n);
+        cout<<"Selection Sort "<<endl;
         t6 = clock();
         cout<<"Time taken : "<<(t6-t5);
-    }
-    else{
+    cout<<endl;
         t7 = clock();
-        mergeSortSingle(arr,0,n);
-        cout<<"Merge Sort ";
+        mergeSortSingle(a4,0,n);
+        cout<<"Merge Sort "<<endl;
         t8 = clock();
         cout<<"Time taken : "<<(t8-t7);
+    cout<<endl;
+    //----------------------------------------
+    t9 = clock();
+    if(n-sortfinderCount<5 && n<10){
+        insertionSort(arr,n);
+        cout<<"Insertion Sort ";
     }
+    else if(n-sortfinderCount<5 && n>=10){
+        bubbleSort(arr,n);
+        cout<<"Bubble Sort ";
+    }
+    else if(n<10){
+        selectionSort(arr,n);
+        cout<<"Selection Sort ";
+    }
+    else{
+        mergeSortSingle(arr,0,n);
+        cout<<"Merge Sort ";
+    }
+    t10 = clock();
+    cout<<"time Taken for Opti Sort: "<<t10-t9;
 }
 // Driver Ccodes to come here; 0.000622
 int main() {
