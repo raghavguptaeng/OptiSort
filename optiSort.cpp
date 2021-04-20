@@ -2,10 +2,10 @@
 #include <iostream>
 #include <pthread.h>
 #include <time.h>  
-#define MAX 2000
-  
+#define MAX 4000
+
 // number of threads
-#define THREAD_MAX 6
+#define THREAD_MAX 4
   
 using namespace std;
   
@@ -346,10 +346,13 @@ void Optimize(bool seeMulti = false){
     }
     t10 = clock();
     cout<<"time Taken for Opti Sort: "<<t10-t9;
+    /*
+    for(int i=0 ; i<n ; ++i){
+        cout<<arr[i]<<" ";
+    }*/
 }
-// Driver Ccodes to come here; 0.000622
-int main() {
+int main(){
 	for (int i = 0; i < MAX; i++)
-        a[i] = rand()%1200;
+        a[i] = rand()%4000;
     Optimize();
 }
